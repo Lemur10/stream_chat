@@ -1,4 +1,4 @@
-import openai
+openai migrate
 import streamlit as st
 
 st.title("Ask Anything!")
