@@ -1,4 +1,4 @@
-Afrom openai import OpenAI
+from openai import OpenAI
 import streamlit as st
 
 st.title("Ask Anything!")
