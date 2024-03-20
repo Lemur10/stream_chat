@@ -1,9 +1,9 @@
-from openai import OpenAI
+Afrom openai import OpenAI
 import streamlit as st
 
 st.title("Ask Anything!")
 
-openai.api_key=st.secrets["OPENAI_API_KEY"]
+OpenAI.api_key=st.secrets["OPENAI_API_KEY"]
 
 if "openai_model" not in st.session_state:
 	st.session_state["openai_model"] = "gpt-3.5-turbo"
