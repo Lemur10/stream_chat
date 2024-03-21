@@ -34,7 +34,7 @@ def get_response(question):
     return latest_message.content[0].text.value
 
 # Streamlit UI
-st.title('Ask OpenAI')
+st.title('Chat to the Policy Doc!')
 question = st.text_input('Enter your question:', '')
 
 if st.button('Ask'):
