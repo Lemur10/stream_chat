@@ -23,7 +23,7 @@ def get_response(question):
 
     # Waiting for the Run to complete
     while run.status != "completed":
-        run = client.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
+        run=client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
         time.sleep(1)
 
     # Get the latest message
