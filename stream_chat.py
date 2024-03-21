@@ -2,7 +2,7 @@
 import streamlit as st
 from openai import OpenAI
 import time
-Import OS
+import os
 
 # Streamlit page configuration
 st.set_page_config(page_title='OpenAI Q&A', layout='wide')
