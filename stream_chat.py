@@ -50,4 +50,6 @@ st.text('-----------------------------------------------------------------------
 st.text('For example "What is the Tuition Waiver Program and who can get it?" ')
 st.text('or "What are the requirements to obtain BC Access Grant?" ')
 st.text('you could ask "What full-time grants can a single mother obtain?" ')
+st.text('-----------------------------------------------------------------------------------')
+st.text('An AI may, from time to time, get things wrong - before using this information always do some checking.')
 
