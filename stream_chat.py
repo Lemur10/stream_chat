@@ -2,13 +2,14 @@
 import streamlit as st
 from openai import OpenAI
 import time
-import os
+
 
 # Streamlit page configuration
 st.set_page_config(page_title='OpenAI Q&A', layout='wide')
 
 def get_response(question):
-    client = os.getenv("OPENAI_API_KEY")
+    client = st.secrets["OPENAI_API_KEY"])
+
 
     # Create a thread with the user's question
     thread = client.beta.threads.create(
