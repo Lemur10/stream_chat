@@ -7,7 +7,7 @@ import time
 st.set_page_config(page_title='OpenAI Q&A', layout='wide')
 
 def get_response(question):
-    client = OpenAI(api_key='your_api_key_here')  # Use Streamlit secrets for the API key
+    client = OpenAI(api_key=OPEN_AI_KEY)
 
     # Create a thread with the user's question
     thread = client.beta.threads.create(
