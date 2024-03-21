@@ -44,6 +44,9 @@ if st.button('Ask'):
         st.write('Response:', response)
     else:
         st.error('Please enter a question.')
+st.text(' ')        
+st.text(' ')        
 st.text('-----------------------------------------------------------------------------------')
-st.text('for example you could ask "What are the requirements to obtain BC Access Grant??" ')
+st.text('for example "What are the requirements to obtain BC Access Grant??" ')
 st.text('you could ask "What full-time grants can a single mother obtain?" ')
+
