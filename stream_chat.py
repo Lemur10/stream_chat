@@ -47,6 +47,7 @@ if st.button('Ask'):
 st.text(' ')        
 st.text(' ')        
 st.text('-----------------------------------------------------------------------------------')
-st.text('for example "What are the requirements to obtain BC Access Grant??" ')
+st.text('What is the Tuition Waiver Program and who can get it?')
+st.text('for example "What are the requirements to obtain BC Access Grant?" ')
 st.text('you could ask "What full-time grants can a single mother obtain?" ')
 
