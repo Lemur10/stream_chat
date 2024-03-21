@@ -5,7 +5,7 @@ import time
 
 
 # Streamlit page configuration
-st.set_page_config(page_title='Chat to the Policy Doc!', layout='wide')
+st.set_page_config(page_title='Chat With the Policy Doc!', layout='wide')
 
 def get_response(question):
     client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
@@ -34,7 +34,7 @@ def get_response(question):
     return latest_message.content[0].text.value
 
 # Streamlit UI
-st.title('Chat With the Policy Doc!')
+st.title('Chat With the 2023/24 Policy Doc!')
 question = st.text_input('Enter your question:', '')
 
 if st.button('Ask'):
