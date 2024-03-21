@@ -5,7 +5,7 @@ import time
 
 
 # Streamlit page configuration
-st.set_page_config(page_title='OpenAI Q&A', layout='wide')
+st.set_page_config(page_title='Chat to the Policy Doc!', layout='wide')
 
 def get_response(question):
     client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
@@ -19,6 +19,7 @@ def get_response(question):
     )
 
     # Submit to the assistant
+    # THIS IS THE POLICY DOCUMENT
     run = client.beta.threads.runs.create(thread_id=thread.id, assistant_id='asst_tzLbzTsLkolR7idtVvZvtdVZ')
 
     # Waiting for the Run to complete
