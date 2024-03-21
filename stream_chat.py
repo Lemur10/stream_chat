@@ -1,46 +1,43 @@
-from openai import OpenAI
+
 import streamlit as st
+from openai import OpenAI
+import time
 
-st.title("Ask Anything!")
+# Streamlit page configuration
+st.set_page_config(page_title='OpenAI Q&A', layout='wide')
 
-OpenAI.api_key=st.secrets["OPENAI_API_KEY"]
+def get_response(question):
+    client = OpenAI(api_key='your_api_key_here')  # Use Streamlit secrets for the API key
 
-if "openai_model" not in st.session_state:
-	st.session_state["openai_model"] = "gpt-3.5-turbo"
+    # Create a thread with the user's question
+    thread = client.beta.threads.create(
+        messages=[
+            {"role": "user", "content": question},
+        ]
+    )
 
-#init chat hist
-if "messages" not in st.session_state:
-	st.session_state.messages=[]
+    # Submit to the assistant
+    run = client.beta.threads.runs.create(thread_id=thread.id, assistant_id='asst_tzLbzTsLkolR7idtVvZvtdVZ')
 
-# display chat messages from history on app rerun
-for message in st.session_state.messages:
-	with st.chat_message(message["role"]):
-		st.markdown(message["content"])
+    # Waiting for the Run to complete
+    while run.status != "completed":
+        run = client.beta.threads.runs.retrieve(thread_id=thread.id, run_id=run.id)
+        time.sleep(1)
 
-#React to user input
-prompt = st.chat_input("Ask anything")
-if prompt:
-	#display user message in message container
-	with st.chat_message("user"):
-		st.markdown(prompt)
+    # Get the latest message
+    message_response = client.beta.threads.messages.list(thread_id=thread.id)
+    latest_message = message_response.data[0]
 
-	#add user message to chat history
-	st.session_state.messages.append({"role": "user", "content": prompt})
+    return latest_message.content[0].text.value
 
-	with st.chat_message("assistant"):
-		message_placeholder = st.empty()
-		full_response = ""
-		for response in OpenAI.ChatCompletion.create(
-			model = st.session_state["openai_model"],
-			messages=[
-				{"role": m["role"], "content": m["content"]}
-				for m in st.session_state.messages
-			],
-			stream=True,
-		):
+# Streamlit UI
+st.title('Ask OpenAI')
+question = st.text_input('Enter your question:', '')
 
-			full_response += response.choices[0].delta.get("content", "")
-			message_placeholder.markdown(full_response +"| ")
-		message_placeholder.markdown(full_response)
-	st.session_state.messages.append({"role": "assistant", "content": full_response})
-
+if st.button('Ask'):
+    if question:
+        with st.spinner('Waiting for response...'):
+            response = get_response(question)
+        st.write('Response:', response)
+    else:
+        st.error('Please enter a question.')
